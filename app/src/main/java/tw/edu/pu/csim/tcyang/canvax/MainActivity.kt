@@ -132,6 +132,15 @@ fun CanvasScreen(modifier: Modifier = Modifier) {
 
             minionsX += 5
             minionsY += 10
+
+            // 小小兵完全移出畫布時，回到左上角
+            if (
+                minionsX >= CanvasWidth ||
+                minionsY >= CanvasHeight
+            ) {
+                minionsX = 0f
+                minionsY = 0f
+            }
         }
     }
 
