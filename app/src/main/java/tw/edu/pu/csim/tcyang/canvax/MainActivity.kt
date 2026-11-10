@@ -15,6 +15,8 @@ import tw.edu.pu.csim.tcyang.canvax.ui.theme.CanvaxTheme
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,22 +36,39 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TestCanvas(modifier: Modifier = Modifier) {
+    val minions = ImageBitmap.imageResource(id = R.drawable.minions)
     Canvas(
         modifier = modifier.fillMaxSize()
     ) {
-        // 繪製洋紅色圓形
+
         drawCircle(
             color = Color.Magenta,
             radius = 100f,
             center = Offset(100f, 100f)
         )
 
-        // 繪製藍色空心矩形
+
         drawRect(
             color = Color.Blue,
             topLeft = Offset(300f, 200f),
             size = androidx.compose.ui.geometry.Size(200f, 200f),
             style = androidx.compose.ui.graphics.drawscope.Stroke(width = 5f)
+        )
+
+
+        drawLine(
+            color = Color.Red,
+            start = Offset(200f, 800f),
+            end = Offset(size.width, size.height),
+            strokeWidth = 10f
+        )
+
+        drawImage(
+            image = minions,
+            topLeft = Offset(
+                (size.width - minions.width) / 2f,
+                (size.height - minions.height) / 2f
+            )
         )
     }
 }
